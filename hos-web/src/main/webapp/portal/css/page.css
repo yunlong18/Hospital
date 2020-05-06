@@ -1,0 +1,39 @@
+.ind_4_cont .img{ float: left; width:424px; height:312px; position: relative; margin-bottom: 15px; }
+.ind_4_cont .img .a{ display: block; height:100%; }
+.ind_4_cont .img .a img{ display: block; width:100%; height:100%; }
+.ind_4_cont .img .a .tit{ position: absolute; width:100%; left:0; bottom:0; z-index:10; color:#fff; background:url(../images/line.png) repeat 0 0; }
+
+.ind_4_cont .img .con{ padding:10px 35px 10px 30px; }
+.ind_4_cont .img .con h2{ font-size:22px; line-height:1.1; padding-bottom: 10px; }
+.ind_4_cont .img .con p{ line-height:1.5em; height:3em; overflow: hidden; font-size:12px; }
+
+
+.ind_4_cont .r{ overflow: hidden; }
+.ind_4_cont .r .tabClick{ padding-bottom: 16px; }
+.ind_4_cont .r .tabClick a{ display: block; float: left; margin-left:15px; width:186px; height:40px; position: relative; text-align: center; line-height:40px; font-size:18px; background:#528eb5; border-radius:5px; color:#fff; text-decoration: none; }
+.ind_4_cont .r .tabClick a i{ display: none; position: absolute; width: 0; height: 0; border-left: 13px solid transparent; border-right: 13px solid transparent; bottom:-10px; left:50%; margin-left:-13px; border-top: 13px solid #528eb5; }
+
+.ind_4_cont .r .tabClick .a2{ background:#55a5aa; }
+.ind_4_cont .r .tabClick .a2 i{ border-top-color:#55a5aa; } 
+.ind_4_cont .r .tabClick .a3{ background:#e5ca8f; }
+.ind_4_cont .r .tabClick .a3 i{ border-top-color:#e5ca8f; } 
+
+.ind_4_cont .r .tabClick .a4{ background:#01763a; }
+.ind_4_cont .r .tabClick a.on i{ display: block; }
+
+.i4-list .child{ display: none;  }
+.i4-list .child.on{ display: block;  }
+.i4-list li{ float: left; margin-left: 15px; cursor: pointer; border:1px solid #cccccc; border-radius:5px;  width:144px; height:38px; line-height:38px; font-size:14px; margin-bottom:14px; }
+/* behavior: url(../css/PIE.htc); */
+.i4-list li a{ display: block; color:#333; padding-left: 26px; position: relative; text-decoration: none;}
+.i4-list li a i{ position: absolute; width:14px; left:0; top:0; height:100%; border-right:1px solid #ccc; background:url(../images/ind_5.png) no-repeat center; }
+
+.i4-list li.on,.i4-list li:hover{ border-color:#528eb5; }
+.i4-list li.on a,.i4-list li:hover a{ color:#528eb5; border-color:#528eb5; }
+.i4-list li.on a i,.i4-list li:hover a i{ border-color:#528eb5; background-images:url(../images/ind_5.png); }
+.i4-list .child + .child li.on,.i4-list .child + .child li:hover{ border-color:#55a5aa; }
+.i4-list .child + .child li.on a,.i4-list .child + .child li:hover a{ color:#55a5aa; border-color:#55a5aa; }
+.i4-list .child + .child li.on a i,.i4-list .child + .child li:hover a i{ border-color:#55a5aa; background-images:url(../images/ind_5.png); }
+.i4-list .child + .child + .child li.on,.i4-list .child + .child + .child li:hover{ border-color:#e5ca8f; }
+.i4-list .child + .child + .child li.on a,.i4-list .child + .child + .child li:hover a{ color:#e5ca8f; border-color:#e5ca8f; }
+.i4-list .child + .child + .child li.on a i,.i4-list .child + .child + .child li:hover a i{ border-color:#e5ca8f; background-images:url(../images/ind_5.png); }

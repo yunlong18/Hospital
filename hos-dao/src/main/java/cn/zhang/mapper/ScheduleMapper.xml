@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.zhang.mapper.ScheduleMapper">
+	<resultMap id="scheduleResultMap" type="cn.zhang.pojo.ScheduleResult">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="doctor_id" property="doctorId" jdbcType="BIGINT" />
+		<result column="work_date" property="workDate" jdbcType="TIMESTAMP" />
+		<result column="work_time" property="workTime" jdbcType="BIT" />
+		<result column="time_interval" property="timeInterval"
+			jdbcType="INTEGER" />
+		<result column="doctor_realname" property="doctorRealname"
+			jdbcType="VARCHAR" />
+		<result column="dep_name" property="depName" jdbcType="VARCHAR" />
+		<result column="doctor_tel" property="doctorTel" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectAllSchedule" resultMap="scheduleResultMap"
+		parameterType="cn.zhang.common.pojo.QueryVO">
+		SELECT
+		s.*,
+		dep.dep_name,
+		doc.doctor_tel
+		FROM
+		t_schedule s,
+		t_department
+		dep,
+		t_doctor doc
+		<where>
+			s.doctor_id = doc.id
+			AND doc.dep_id = dep.id
+			<if test="userTel != null and userTel != ''">
+				AND doctor_tel = #{userTel}
+			</if>
+			<if test="doctorId != null and doctorId != ''">
+				AND doctor_id = #{doctorId}
+			</if>
+		</where>
+		ORDER BY work_date
+		limit #{startIndex}, #{pageSize}
+	</select>
+	<select id="countTotal" resultType="long" parameterType="cn.zhang.common.pojo.QueryVO">
+		SELECT
+		COUNT( * )
+		FROM
+		`t_schedule` ts,
+		t_doctor td
+		<where>
+			ts.doctor_id = td.id 
+			<if test="doctorId != null and doctorId != ''">
+				and doctor_id = #{doctorId} 
+			</if>
+			<if test="userTel != null and userTel != ''">
+				and td.doctor_tel = #{userTel}
+			</if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,9 @@
+.cf:before{ content: ''; display: table }
+.cf:after{ content: ''; display: table; clear: both; }
+.cf{ *zoom: 1 }
+.ellipsis{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block; }
+/* a{text-decoration:none;color:#333;} */
+/* ol,ul,li{list-style:none outside none;padding:0;} */
+ul{list-style:none outside none;padding:0;width: -webkit-fill-available;}
+/* .dropdown-menu li{width: -webkit-fill-available;} */
+/* .dropdown-menu li{    width: 183px;} */

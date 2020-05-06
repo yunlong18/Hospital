@@ -1,0 +1,7 @@
+.myalert-shadow{background:url(black50.png);position:fixed;left:0;top:0;right:0;bottom:0;z-index:6666;display:none;}
+#myalert.dev-alert{position:fixed;width:300px;left:50%;top:35%;margin-left:-150px;background:#fff;z-index:7777;display:none;}
+#myalert.dev-alert .inner{padding:40px 40px 30px;}
+#myalert.dev-alert .guan{background:url(clos.png) no-repeat center; display:block;width:23px;height:23px;position:absolute;top:10px;right:10px;}
+#myalert.dev-alert h1{font-size: 18px;text-align: center; line-height: 20px;}
+#myalert.dev-alert .btns{margin-top:30px;text-align: center;}
+#myalert.dev-alert .btns a{border:1px solid #333;font-size:16px;margin:0 10px;display:inline-block;height:30px;line-height:30px;padding:0 15px;min-width:50px;}

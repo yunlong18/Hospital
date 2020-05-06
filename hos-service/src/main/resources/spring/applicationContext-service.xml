@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd ">
+	<!-- 扫描的包 -->
+	<context:component-scan base-package="cn.zhang.service.impl" />
+	
+	<!-- 配置任务类 -->
+	<bean id="timingDeleteSchedule" class="cn.zhang.quartz.TimingDeleteSchedule"/>
+	<bean id="timingRefreshCreditScore" class="cn.zhang.quartz.TimingRefreshCreditScore" />
+	<!-- 配置任务一 -->
+	<!-- 配置jobDetail -->
+	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="timingDeleteSchedule"/>
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+	<!-- 配置触发器Trigger -->
+	<bean id="myTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="jobDetail"/>
+		</property>
+		<property name="cronExpression">
+			<!-- 每天凌晨执行删除今天之前的排班信息 -->
+			<value>0 0 0 * * ?</value>
+		</property>
+	</bean>
+	<!-- 配置任务二 -->
+	<bean id="jobDetail2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="timingRefreshCreditScore"/>
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+	<bean id="myTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="jobDetail2"/>
+		</property>
+		<property name="cronExpression">
+			<!-- 每月月初零点执行 -->
+			<value>0 0 0 1 * ?</value>
+		</property>
+	</bean>
+	
+	<!-- 配置scheduler -->
+	<bean id="schedule" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="myTrigger"/>
+				<ref bean="myTrigger2"/>
+			</list>
+		</property>
+	</bean>
+</beans> 

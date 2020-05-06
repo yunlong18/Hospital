@@ -1,0 +1,54 @@
+body {
+	/* width: 1300px; */
+	/*background-color: #fafafa;*/
+	/* border: #000000 solid 1px; */
+	background-color: white;
+}
+
+.dropdown-menu {
+	background-color: #386ed3;
+}
+
+.dropdown-menu>li>a:hover {
+	background-color: #2f90ff;
+	color: #fff;
+	display: block;
+	cursor: pointer;
+}
+.dropdown-menu>li>a{
+	border-bottom: lightgrey 1px solid;
+	line-height: 35px;
+	text-align: center; 
+}
+
+/* .nav-pills>li.active>a:hover { */
+/* 	background-color: #2f90ff; */
+/* } */
+
+.nav-pills>li.daohang>a:hover {
+	background-color: #2f90ff;
+}
+
+.nav-pills>li.daohang>a:visited {
+	background-color: #2f90ff !important;
+}
+
+.setWhite {
+	color: white;
+}
+
+.setGrey {
+	background-color: #fafafa;
+}
+
+div.item img {
+	width: 100%;
+}
+
+.list-group-item {
+	background-color: #fafafa;
+	border-width: 0px;
+}
+div.set-hover>a:hover{
+	background-color: #a8a8a8;
+}

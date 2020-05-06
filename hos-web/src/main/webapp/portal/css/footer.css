@@ -1,0 +1,5 @@
+.foot{ width: 100%; height: 150px; background: url(../../portal/images/foot.jpg) repeat-x; }
+.footer{ width: 1000px; margin:  auto; color: #fff; text-align: center; font-size: 14px; font-weight: normal;}
+.footer p{ padding-top: 6px}
+.footer span{ line-height: 30px}
+.footer a{color:#fff}

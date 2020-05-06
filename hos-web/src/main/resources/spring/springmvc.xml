@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd ">
+
+	<!-- 读取配置文件 -->
+	<context:property-placeholder location="classpath:conf/resource.properties"/>
+	<!-- 开启注解扫描 -->
+	<context:component-scan base-package="cn.zhang.controller" />
+
+	<!-- 配置视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/order/**"/>
+			<bean class="cn.zhang.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/selfManager.html"/>
+			<bean class="cn.zhang.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/doctorIndex/**"/>
+			<bean class="cn.zhang.interceptor.DoctorLoginInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/adminIndex/**"/>
+			<bean class="cn.zhang.interceptor.AdminLoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置默认文件编码 -->
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 限制文件的大小 -->
+		<property name="maxUploadSize" value="5242880" />
+	</bean>
+	
+	
+	<!-- 配置自定义转换器 -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean id="dateConvert" class="cn.zhang.common.utils.DateConvert"></bean>
+			</set>
+		</property>
+	</bean>
+	
+	<!-- 配置全局异常处理器 -->
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		定义默认异常处理的页面
+		<property name="defaultErrorView" value="error"></property>
+		定义异常处理页面获取异常信息的变量名，默认为exception
+		<property name="exceptionAttribute" value="ex"></property>
+		可以配置自定义异常处理
+		<property name="exceptionMappings">
+			<props>
+				<prop key="cn.zhang.exception.GlobalException">error</prop>
+			</props>
+			还可以定义其他的自定义异常
+		</property>
+	</bean> -->
+	<!-- 注解扫描两大组件 RequestMapping HandlerMapping和HandlerAdapter-->
+	<mvc:annotation-driven conversion-service="conversionService"/>
+</beans>
