@@ -26,8 +26,6 @@ public class ScheduleManagerController {
 
 	@Autowired
 	private ScheduleManagerService scheduleManagerService;
-	@Value("${DOCTOR_SCHEDULE_PREFIX}")
-	private String DOCTOR_SCHEDULE_PREFIX;
 
 	@RequestMapping("/scheduleManager/list")
 	public String showScheduleList(QueryVO queryVO, Model model) {
@@ -59,14 +57,6 @@ public class ScheduleManagerController {
 	@RequestMapping("/scheduleManager/sourceNumber")
 	@ResponseBody
 	public E3Result sourceNumber(Long scheduleId, HttpServletRequest request) throws ParseException {
-		List<SourceNumber> list = null;
-		// 判断session中是否有号源列表
-		list = (List<SourceNumber>)request.getSession().getAttribute(DOCTOR_SCHEDULE_PREFIX + scheduleId);
-		if (list != null){
-			return E3Result.ok(list);
-		}
-		list = scheduleManagerService.listSourceNumberByScheduleId(scheduleId);
-		request.getSession().setAttribute(DOCTOR_SCHEDULE_PREFIX + scheduleId, list);
-		return E3Result.ok(list);
+		return E3Result.ok(scheduleManagerService.listSourceNumberByScheduleId(scheduleId));
 	}
 }

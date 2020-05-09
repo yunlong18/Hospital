@@ -11,7 +11,22 @@ public class SourceNumber implements Comparable<SourceNumber>{
 	private Date startTime;
 	private Date endtTime;
 	private Long scheduleId;
-	
+	private String Date_x;
+	private String StartTime_x;
+	private String endTime_x;
+
+	public void setEndTime_x(String endTime_x) {
+		this.endTime_x = endTime_x;
+	}
+
+	public void setDate_x(String date_x) {
+		Date_x = date_x;
+	}
+
+	public void setStartTime_x(String startTime_x) {
+		StartTime_x = startTime_x;
+	}
+
 	public Long getScheduleId() {
 		return scheduleId;
 	}

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderService {
 
-	E3Result insertOrder(TOrder order);
+	E3Result insertOrder(TOrder order, Long scheduleId);
 	
 	List<TOrder> listOrderByUserId(Integer id, Boolean isHistory);
 
